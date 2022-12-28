@@ -25,6 +25,8 @@ projectiles or colliding with enemy entity.
 Randomly fires a projectile. On collision subtracts a player life or deletes a piece of wall. 
 There are 3 enemy types, which differ in points given after their destruction by player.
 
+![im1](https://user-images.githubusercontent.com/65544540/209845295-74f8c75d-f473-499f-adfd-2df83b8b19e7.png)
+
 - Bonus Enemy 
   - Moves horizontally. Spawns on top of the screen at random time. Gives bonus points if destroyed.
 
