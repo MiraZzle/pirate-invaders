@@ -17,6 +17,8 @@ Players Goal is to achieve the highest score by eliminating enemy entities.
 - Player 
   - Moves horizontally and shoots a projectile to destroy enemies. The player has 3 lives, which are lost by colliding with enemy 
 projectiles or colliding with enemy entity.
+<img width="47" alt="Snímek obrazovky 2022-12-28 v 17 46 20" src="https://user-images.githubusercontent.com/65544540/209845149-4e327713-7c09-4ece-a463-51c38c77620a.png">
+
 
 - Enemy 
   - Moves horizontally in a group. If a member of enemy group touches a side of the game window, the enemy group switches direction. 
@@ -33,10 +35,11 @@ There are 3 enemy types, which differ in points given after their destruction by
 
 ### Player controller
 - To move the player use the following controls: 
-  -  Hold → to *move right*
-  -  Hold ← to *move left*
-  -  Press **space** to *shoot a projectile*
+  -  Hold → to move right
+  -  Hold ← to move left
+  -  Press **space** to shoot a projectile
 
 
 ## Game Over
+- Player 
 
