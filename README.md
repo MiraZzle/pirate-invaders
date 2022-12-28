@@ -42,6 +42,9 @@ There are 3 enemy types, which differ in points given after their destruction by
   -  Hold ← to move left
   -  Press **space** to shoot a projectile
 
+### New game
+- Pres **enter** after the game is over to restart the game
+
 
 ## Game Over
 - Player 
