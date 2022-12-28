@@ -56,5 +56,7 @@ There are 3 enemy types, which differ in points given after their destruction by
   - Game ends if player health reaches 0
   - Game ends if player collides with an enemy
  
+ <p align="center">
   <img width="363" alt="Snímek obrazovky 2022-12-28 v 17 56 27" src="https://user-images.githubusercontent.com/65544540/209846303-49c9aa5c-6721-4355-a895-6d1798fb6480.png">
+</p>
 
