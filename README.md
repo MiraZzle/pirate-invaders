@@ -43,9 +43,13 @@ There are 3 enemy types, which differ in points given after their destruction by
   -  Press **SPACE** to shoot a projectile
 
 ### New game
-- Pres **ENTER** after the game is over to restart the game
+- Press **ENTER** after the game is over to restart the game
 
 
 ## Game Over
-- Player 
+- Game Over conditions:
+  - Game ends if player health reaches 0
+  - Game ends if player collides with an enemy
+ 
+<img width="363" alt="Snímek obrazovky 2022-12-28 v 17 56 27" src="https://user-images.githubusercontent.com/65544540/209846303-49c9aa5c-6721-4355-a895-6d1798fb6480.png">
 
