@@ -52,6 +52,12 @@ There are 3 enemy types, which differ in points given after their destruction by
 ### New game
 - Press **ENTER** after the game is over to restart the game
 
+## UI
+- UI displays:
+  - Current score
+  - Highscore
+  - Lives left<img width="205" alt="Snímek obrazovky 2022-12-28 v 17 46 00" src="https://user-images.githubusercontent.com/65544540/209851194-71d79f5c-9429-4b45-96ab-665a833c895c.png">
+
 
 ## Game Over
 - Game Over conditions:
