@@ -14,7 +14,8 @@ Players Goal is to achieve the highest score by eliminating enemy entities.
 
 ## How to play
 1. Clone the repository
-2. Run the file ./source_code/main.py
+2. Open the entire repository in IDE
+3. Run the file ./source_code/main.py
 
 ## Entities
 
