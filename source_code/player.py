@@ -39,21 +39,24 @@ class Player(pg.sprite.Sprite):
 
     def player_input(self) -> None:
         """Player input mapping"""
+
         keys = pg.key.get_pressed()
 
         """If right arrow is pressed and held, player moves to right"""
         """If left arrow is pressed and held, player moves to left"""
+
         if keys[pg.K_RIGHT]:
             self.rect.x += self.speed
             self.current_side = "right"
+            self.image = self.right_dir
 
         elif keys[pg.K_LEFT]:
             self.rect.x -= self.speed
             self.current_side = "left"
-
-        self.handle_animation()
+            self.image = self.left_dir
 
         """Shoots projectile if SPACE is pressed"""
+
         if keys[pg.K_SPACE] and self.ready:
             self.shoot()
             self.ready = False
@@ -66,14 +69,14 @@ class Player(pg.sprite.Sprite):
         self.projectiles.update()
 
     def reload(self) -> None:
-        """Enables shooting after elapsed time"""
-        if self.ready == False:
-            current_time: int = pg.time.get_ticks()
-            if current_time - self.shooting_time >= self.shoot_cd:
-                self.ready = True
+        """Enables shooting if no player projectile is present"""
+
+        if not self.ready and not self.projectiles:
+            self.ready = True
 
     def clamp(self) -> None:
         """Locks player on screen"""
+
         if self.rect.left <= 0:  # if left pos <= 0, pos is set to 0
             self.rect.left = 0
         elif self.rect.right >= self.scr_width:  # if right pos >= scr_width, pos is set to scr_width
@@ -83,23 +86,3 @@ class Player(pg.sprite.Sprite):
         self.projectiles.add(Projectile(
             self.rect.center, "./resources/cannon_ball.png", 8, self.rect.bottom))
         self.shot_sound.play()
-
-    def handle_animation(self) -> None:
-        """Handles player animation, every 20 ticks new frame is set, animation speed = 3 FPS"""
-
-        self.current_time += 1  # Marks one frame in main.py
-        if self.current_time % 20 == 0:  # 60 / 20 = 3
-            self.current_time = 0
-            self.current_frame += 1
-            self.current_frame = self.current_frame % 2
-
-            self.image = pg.image.load(
-                self.available_frames[self.current_frame]).convert_alpha()
-
-            self.right_dir = self.image
-            self.left_dir = pg.transform.flip(self.image, True, False)
-
-        if self.current_side == "right":
-            self.image = self.right_dir
-        else:
-            self.image = self.left_dir

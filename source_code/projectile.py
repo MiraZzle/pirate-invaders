@@ -12,7 +12,7 @@ class Projectile(pg.sprite.Sprite):
         self.max_y = scr_height
 
     def queue_free(self) -> None:
-        """Projectile is deleted if 30px above or under the screen"""
+        """Projectile is deleted if is out of the screen"""
 
         if self.rect.y <= -30:
             self.kill()

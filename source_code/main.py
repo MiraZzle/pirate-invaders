@@ -11,6 +11,8 @@ from projectile import Projectile
 from random import randint
 from random import choice
 
+# Class for all game processes:
+
 
 class GameLoop:
     def __init__(self) -> None:
@@ -39,6 +41,12 @@ class GameLoop:
             "./resources/audio/shot.wav")
         self.shot_sound.set_volume(0.5)
 
+        # Sound effect for game over:
+        self.game_over_sound = pg.mixer.Sound(
+            "./resources/audio/game_over.wav")
+        self.shot_sound.set_volume(0.5)
+
+        # Lives section:
         self.lives: int = 3
         self.live_icon = pg.image.load(
             "./resources/im5.png").convert_alpha()
@@ -76,7 +84,7 @@ class GameLoop:
 
         # Extras section:
         self.bg = pg.image.load("./resources/big_bg.png").convert()
-        self.font = pg.font.Font("./fonts/pixel_regular.ttf", 20)
+        self.font = pg.font.Font("./fonts/pixel_8fj.ttf", 30)
 
     # Wall methods section:
 
@@ -139,16 +147,17 @@ class GameLoop:
                 enemy.rect.y += 2
 
     def enemy_shoot(self) -> None:
+        """"Chooses random enemy from list and inits new projectile at his coords"""
+
         if self.enemies.sprites():
-            """"Chooses random enemy from list and inits new projectile at his coords"""
+            if self.dead == False:
+                rand_enemy = choice(self.enemies.sprites())
 
-            rand_enemy = choice(self.enemies.sprites())
+                arrow_sprite = Projectile(
+                    rand_enemy.rect.center, "./resources/arrow.png", -6, scr_height)
 
-            arrow_sprite = Projectile(
-                rand_enemy.rect.center, "./resources/arrow.png", -5, scr_height)
-
-            self.enemy_projectiles.add(arrow_sprite)
-            self.shot_sound.play()
+                self.enemy_projectiles.add(arrow_sprite)
+                self.shot_sound.play()
 
     def bonus_enemy_timer(self) -> None:
         """Spawns bonus enemy"""
@@ -160,13 +169,18 @@ class GameLoop:
             self.bonus_spawn_t = randint(600, 1000)
 
     def collision_checker(self) -> None:
+        """Handles all collisions"""
+
+        # Checs for player projectile collisions
         if self.player.sprite.projectiles:
             for projectile in self.player.sprite.projectiles:
+
                 if pg.sprite.spritecollide(projectile, self.walls, True):
                     projectile.kill()
 
                 enemies_hit = pg.sprite.spritecollide(
                     projectile, self.enemies, True)
+
                 if enemies_hit:
                     for enemy in enemies_hit:
                         self.score += enemy.value
@@ -177,30 +191,42 @@ class GameLoop:
                     projectile.kill()
                     self.score += self.bonus_enemy_value
 
+        # Checks for enemy projectile collisions
         if self.enemy_projectiles:
             for projectile in self.enemy_projectiles:
+
                 if pg.sprite.spritecollide(projectile, self.walls, True):
                     projectile.kill()
 
+                # If enemy projectile collides with player, sub 1 life
                 if pg.sprite.spritecollide(projectile, self.player, False):
                     projectile.kill()
                     self.lives -= 1
                     if self.lives <= 0:
-                        self.dead = True
+                        self.game_over()
                         self.high_score_manager.check_highcore(self.score)
 
                 if pg.sprite.spritecollide(projectile, self.walls, True):
                     projectile.kill()
 
+        # Checks for enemy collisions
         if self.enemies:
             for enemy in self.enemies:
+                # Deletes wall blocks on collision
                 pg.sprite.spritecollide(enemy, self.walls, True)
 
+                # Game over if enemy collides with player
                 if pg.sprite.spritecollide(enemy, self.player, False):
                     self.high_score_manager.check_highcore(self.score)
+                    self.game_over()
 
     def show_lives(self) -> None:
         """Renders n-1 lives left"""
+
+        mess_to_show = "LIVES: "
+        lives_text = self.font.render(mess_to_show, False, "white")
+        lives_rect = lives_text.get_rect(center=(620, 30))
+        screen.blit(lives_text, lives_rect)
 
         for icon in range(self.lives - 1):
             x = self.live_pos_x + (icon * self.live_icon.get_size()[0] + 10)
@@ -211,7 +237,7 @@ class GameLoop:
 
         score_to_show = "SCORE: " + str(self.score)
         score_txt = self.font.render(score_to_show, False, "white")
-        score_rect = score_txt.get_rect(topleft=(10, 10))
+        score_rect = score_txt.get_rect(center=(145, 30))
         screen.blit(score_txt, score_rect)
 
     def show_high_score(self) -> None:
@@ -226,23 +252,41 @@ class GameLoop:
         """If enemies group is empty, initiated new wave of enemies"""
 
         if not self.enemies:
-            self.empty_walls()
-            self.spawn_enemies(5, 10)
-            self.place_walls(*self.wall_x_positions,
-                             x_pos=scr_width/16, y_pos=480)
+            if not self.dead:
+                self.empty_walls()
+                self.spawn_enemies(5, 10)
+                self.place_walls(*self.wall_x_positions,
+                                 x_pos=scr_width/16, y_pos=480)
 
-    def loss_message(self) -> None:
-        self.dead = True
+    def game_over(self) -> None:
+        """Empties all groups"""
+
+        self.main_music.stop()
+        self.player.sprite.projectiles.empty()
+        self.enemy_projectiles.empty()
         self.enemies.empty()
         self.empty_walls()
-        self.high_score_manager.check_highcore(self.score)
+        self.player.empty()
+        self.bonus_enemies.empty()
 
-        message = self.font.render("GAME OVER", False, "white")
-        mess_rect = message.get_rect(
-            center=(scr_width / 2, scr_height / 2))
-        screen.blit(message, mess_rect)
+        self.high_score_manager.check_highcore(self.score)
+        self.game_over_sound.play()
+        self.dead = True
+
+    def death_message(self, message_to_render, new_game_instructions, score_line):
+        """Display message after game over"""
+
+        mess_offset = 60
+        messages = [message_to_render, new_game_instructions, score_line]
+        for i, message in enumerate(messages):
+            temp_mess = self.font.render(message, False, "white")
+            temp_rect = temp_mess.get_rect(
+                center=(scr_width / 2, mess_offset * i + scr_height / 2 - 40))
+            screen.blit(temp_mess, temp_rect)
 
     def new_game(self) -> None:
+        """Inits new game"""
+
         self.__init__()
 
     def run(self) -> None:
@@ -251,6 +295,7 @@ class GameLoop:
         self.update()
         self.all_draw()
         self.all_checks()
+        self.check_for_death_mess()
 
         self.enemy_stack = self.enemies.sprites()
 
@@ -263,21 +308,37 @@ class GameLoop:
             self.enemy_projectiles.update()
             self.bonus_enemies.update()
 
+    def check_for_death_mess(self):
+        """Checks to display death message and new game instructions"""
+        if self.dead == False:
+            self.death_message("", "", "")
+        else:
+            self.death_message("GAME OVER",
+                               "SCORE: " + str(self.score),
+                               "press ENTER to RESTART")
+            keys = pg.key.get_pressed()
+
+            if keys[pg.K_RETURN]:
+                self.__init__()
+
     def all_draw(self) -> None:
         """Draws all objects on screen"""
-
-        self.player.draw(screen)
-        self.player.sprite.projectiles.draw(screen)
         self.enemy_projectiles.draw(screen)
         self.walls.draw(screen)
         self.enemies.draw(screen)
         self.bonus_enemies.draw(screen)
 
+        if self.player:
+            self.player.draw(screen)
+            self.player.sprite.projectiles.draw(screen)
+
     def all_checks(self) -> None:
         """Custom checks"""
 
+        if self.player:
+            self.collision_checker()
+
         self.enemy_pos_check()
-        self.collision_checker()
         self.next_round()
         self.bonus_enemy_timer()
         self.show_lives()
@@ -296,6 +357,7 @@ def main() -> None:
     active_game: bool = True
     scr_width = 800
     scr_height = 600
+    enemy_proj_cd: int = 1200
 
     clock = pg.time.Clock()
     screen = pg.display.set_mode(
@@ -303,7 +365,7 @@ def main() -> None:
     game = GameLoop()
 
     enemy_projectile = pg.USEREVENT + 1
-    pg.time.set_timer(enemy_projectile, 1200)
+    pg.time.set_timer(enemy_projectile, enemy_proj_cd)
 
     while active_game:
         for event in pg.event.get():

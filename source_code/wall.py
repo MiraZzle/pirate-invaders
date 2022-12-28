@@ -11,7 +11,7 @@ class Wall(pg.sprite.Sprite):
         self.rect = self.image.get_rect(topleft=(x, y))
 
 
-# Shape of wall, may be altered in any way, "X" represents placed cells
+# Shape of wall may be altered in any way, "X" represents placed blocks / cells
 shape = [
     "XXXXXXXXXXX",
     "XXXXXXXXXXX",
