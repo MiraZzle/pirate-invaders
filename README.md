@@ -5,9 +5,11 @@
 ### Description
 Pirate Invaders is a game based on the game Space Invaders. The player controls a horizontally moving character. 
 Players goal is to achieve the highest score by eliminating enemy entities.
+
 <p align="center">
 <img width="631" alt="Snímek obrazovky 2022-12-28 v 17 43 24" src="https://user-images.githubusercontent.com/65544540/209844778-1e281ecd-6ad7-4332-b873-fb2808e2b480.png">
 </p>
+
 ## Prerequisities
 1. [Download Python](https://www.python.org/downloads/) (v3.10+)
 2. [Download Pygame](https://pypi.org/project/pygame/) (v2.1.2)
