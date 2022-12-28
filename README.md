@@ -6,6 +6,8 @@
 Pirate Invaders is a game based on the game Space Invaders. The player controls a horizontally moving character. 
 Players Goal is to achieve the highest score by eliminating enemy entities.
 
+<img width="631" alt="Snímek obrazovky 2022-12-28 v 17 43 24" src="https://user-images.githubusercontent.com/65544540/209844778-1e281ecd-6ad7-4332-b873-fb2808e2b480.png">
+
 ## How to play
 1. Clone the repository
 2. Run the file ./source_code/main.py
@@ -23,7 +25,6 @@ There are 3 enemy types, which differ in points given after their destruction by
 
 - Bonus Enemy 
   - Moves horizontally. Spawns on top of the screen at random time. Gives bonus points if destroyed.
-<img width="631" alt="Snímek obrazovky 2022-12-28 v 17 43 24" src="https://user-images.githubusercontent.com/65544540/209844778-1e281ecd-6ad7-4332-b873-fb2808e2b480.png">
 
 - Wall
   - Static entity. Protects the player from enemy projectiles. This entitity can be destroyed by colliding with any projectiles.
