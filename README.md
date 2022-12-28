@@ -1,11 +1,13 @@
 # Pirate Invaders
 
 ##Gameplay
+
 ###Description
 Pirate Invaders is a game based on the game Space Invaders. The player controls a horizontally moving character. 
 Players Goal is to achieve the highest score by eliminating enemy entities.
 
 ###Entities
+
 - Player 
   - Moves horizontally and shoots a projectile to destroy enemies. The player has 3 lives, which are lost by colliding with enemy 
 projectiles or colliding with enemy entity.
