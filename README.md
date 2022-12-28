@@ -38,12 +38,12 @@ There are 3 enemy types, which differ in points given after their destruction by
 
 ### Player controller
 - To move the player use the following controls: 
-  -  Hold → to move right
-  -  Hold ← to move left
-  -  Press **space** to shoot a projectile
+  -  Hold → (LEFT ARROW KEY) to move right
+  -  Hold ← (RIGTH ARROW KEY) to move left
+  -  Press **SPACE** to shoot a projectile
 
 ### New game
-- Pres **enter** after the game is over to restart the game
+- Pres **GAME** after the game is over to restart the game
 
 
 ## Game Over
