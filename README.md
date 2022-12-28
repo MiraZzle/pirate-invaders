@@ -54,9 +54,12 @@ There are 3 enemy types, which differ in points given after their destruction by
 
 ## UI
 - UI displays:
-  - Current score
-  - Highscore
-  - Lives left<img width="205" alt="Snímek obrazovky 2022-12-28 v 17 46 00" src="https://user-images.githubusercontent.com/65544540/209851194-71d79f5c-9429-4b45-96ab-665a833c895c.png">
+  - Current score:
+  - <img width="218" alt="Snímek obrazovky 2022-12-28 v 18 40 30" src="https://user-images.githubusercontent.com/65544540/209851357-ea7f99b5-3871-491f-8894-296f251d526f.png">
+  - Highscore:
+  - <img width="110" alt="Snímek obrazovky 2022-12-28 v 18 40 35" src="https://user-images.githubusercontent.com/65544540/209851346-768daf46-ecea-4fd7-9b82-1db16b131da3.png">
+  - Lives left:
+  - <img width="205" alt="Snímek obrazovky 2022-12-28 v 17 46 00" src="https://user-images.githubusercontent.com/65544540/209851194-71d79f5c-9429-4b45-96ab-665a833c895c.png">
 
 
 ## Game Over
