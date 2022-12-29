@@ -39,7 +39,7 @@ There are 3 enemy types, which differ in points given after their destruction by
   
 
 - **Wall**
-  - Static entity. Protects the player from enemy projectiles. This entitity can be destroyed by colliding with any projectiles.
+  - Static entity. Protects the player from enemy projectiles. This entitity can be destroyed by colliding with any projectiles. Resets every new round.
 
 ## Controls
 
