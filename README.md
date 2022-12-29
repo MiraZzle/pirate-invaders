@@ -29,7 +29,7 @@ projectiles or colliding with enemy entity.
 
 - **Enemy** ![im2](https://user-images.githubusercontent.com/65544540/209845436-2794e568-0bef-4601-b658-734ded81bf5f.png)![im3](https://user-images.githubusercontent.com/65544540/209845439-fcd67d27-c875-4971-8c1f-36eff67e0fcf.png)![im4](https://user-images.githubusercontent.com/65544540/209845448-059f4ef9-8848-412e-a9b4-34a9f3513b7b.png)
   - Moves horizontally in a group. If a member of enemy group touches a side of the game window, the enemy group switches direction. 
-Randomly fires a projectile. On collision subtracts a player life or deletes a piece of wall. 
+Randomly fires a projectile. On collision enemy projectile subtracts a player life or deletes a piece of wall. 
 There are 3 enemy types, which differ in points given after their destruction by player.
   
   
