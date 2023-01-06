@@ -1,5 +1,7 @@
-import pygame as pg
+import os
 import sys
+import pygame as pg
+
 import wall
 
 from score_manager import HighScoreManager
@@ -10,6 +12,9 @@ from projectile import Projectile
 
 from random import randint
 from random import choice
+from pathlib import Path
+
+app_folder = os.path.dirname(os.path.dirname(__file__))
 
 # Class for all game processes:
 
@@ -20,36 +25,36 @@ class GameLoop:
         self.player = pg.sprite.GroupSingle(player_sprite)
 
         # Sets os window icon and name:
-        self.window_icon = pg.image.load("./resources/im1.png")
+        self.window_icon = pg.image.load(app_folder + "/resources/im1.png")
 
         pg.display.set_icon(self.window_icon)
         pg.display.set_caption("Pirate Defence")
 
         # Sets main background music:
-        self.main_music = pg.mixer.Sound(
-            "./resources/audio/main_music.wav")
+        self.main_music = pg.mixer.Sound(app_folder +
+                                         "/resources/audio/main_music.wav")
         self.main_music.set_volume(0.4)
         self.main_music.play(-1)  # Arg -1 loops music
 
         # Sound effect for projectile based collisions:
-        self.collision_sound = pg.mixer.Sound(
-            "./resources/audio/collision.wav")
+        self.collision_sound = pg.mixer.Sound(app_folder +
+                                              "/resources/audio/collision.wav")
         self.collision_sound.set_volume(0.5)
 
         # Sound effect for projectile init:
-        self.shot_sound = pg.mixer.Sound(
-            "./resources/audio/shot.wav")
+        self.shot_sound = pg.mixer.Sound(app_folder +
+                                         "/resources/audio/shot.wav")
         self.shot_sound.set_volume(0.5)
 
         # Sound effect for game over:
-        self.game_over_sound = pg.mixer.Sound(
-            "./resources/audio/game_over.wav")
+        self.game_over_sound = pg.mixer.Sound(app_folder +
+                                              "/resources/audio/game_over.wav")
         self.shot_sound.set_volume(0.5)
 
         # Lives section:
         self.lives: int = 3
-        self.live_icon = pg.image.load(
-            "./resources/im5.png").convert_alpha()
+        self.live_icon = pg.image.load(app_folder +
+                                       "/resources/im5.png").convert_alpha()
         self.live_pos_x = scr_width - (self.live_icon.get_size()[0] * 2 + 20)
         self.dead: bool = False
 
@@ -83,8 +88,8 @@ class GameLoop:
         self.bonus_enemy_value: int = 600
 
         # Extras section:
-        self.bg = pg.image.load("./resources/big_bg.png").convert()
-        self.font = pg.font.Font("./fonts/pixel_8fj.ttf", 30)
+        self.bg = pg.image.load(app_folder+"/resources/big_bg.png").convert()
+        self.font = pg.font.Font(app_folder+"/fonts/pixel_8fj.ttf", 30)
 
     # Wall methods section:
 
@@ -154,7 +159,7 @@ class GameLoop:
                 rand_enemy = choice(self.enemies.sprites())
 
                 arrow_sprite = Projectile(
-                    rand_enemy.rect.center, "./resources/arrow.png", -6, scr_height)
+                    rand_enemy.rect.center, app_folder + "/resources/arrow.png", -6, scr_height)
 
                 self.enemy_projectiles.add(arrow_sprite)
                 self.shot_sound.play()

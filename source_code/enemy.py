@@ -1,11 +1,14 @@
 import pygame as pg
+import os
+
+app_folder = os.path.dirname(os.path.dirname(__file__))
 
 
 class Enemy(pg.sprite.Sprite):
     def __init__(self, enemy_type, x, y) -> None:
         super().__init__()
-        self.sprite_path = "./resources/" + enemy_type + ".png"
-        self.second_frame_path = "./resources/" + enemy_type + "_b" + ".png"
+        self.sprite_path = app_folder+"/resources/" + enemy_type + ".png"
+        self.second_frame_path = app_folder+"/resources/" + enemy_type + "_b" + ".png"
         self.available_frames = [self.sprite_path, self.second_frame_path]
 
         self.image = pg.image.load(self.sprite_path).convert_alpha()
@@ -45,10 +48,11 @@ class Enemy(pg.sprite.Sprite):
 class BonusEnemy(pg.sprite.Sprite):
     def __init__(self, side, scr_w) -> None:
         super().__init__()
-        self.image = pg.image.load("./resources/im1.png").convert_alpha()
+        self.image = pg.image.load(
+            app_folder+"/resources/im1.png").convert_alpha()
 
-        self.frame_one = "./resources/im1.png"
-        self.frame_two = "./resources/im1_b.png"
+        self.frame_one = app_folder+"/resources/im1.png"
+        self.frame_two = app_folder+"/resources/im1_b.png"
 
         self.left_dir = self.image
         self.right_dir = pg.transform.flip(

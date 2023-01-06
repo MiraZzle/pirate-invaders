@@ -1,5 +1,8 @@
 import pygame as pg
 from projectile import Projectile
+import os
+
+app_folder = os.path.dirname(os.path.dirname(__file__))
 
 
 class Player(pg.sprite.Sprite):
@@ -8,10 +11,11 @@ class Player(pg.sprite.Sprite):
 
         super().__init__()
         self.image = pg.image.load(
-            "./resources/im5.png").convert_alpha()
+            app_folder+"/resources/im5.png").convert_alpha()
 
-        self.sprite_path = "./resources/im5.png"  # Path to first frame of anim
-        self.second_frame_path = "./resources/im5_b.png"  # Path to second frame of anim
+        self.sprite_path = app_folder+"/resources/im5.png"  # Path to first frame of anim
+        # Path to second frame of anim
+        self.second_frame_path = app_folder + "/resources/im5_b.pngm"
 
         self.scr_width: int = scr_w
         self.rect = self.image.get_rect(midbottom=pos)
@@ -22,7 +26,7 @@ class Player(pg.sprite.Sprite):
         self.shoot_cd: int = 600
         self.projectiles = pg.sprite.Group()
         self.shot_sound = pg.mixer.Sound(
-            "./resources/audio/shot.wav")
+            app_folder+"/resources/audio/shot.wav")
         self.shot_sound.set_volume(0.5)
 
         # Images for going right or left
@@ -84,5 +88,5 @@ class Player(pg.sprite.Sprite):
 
     def shoot(self) -> None:
         self.projectiles.add(Projectile(
-            self.rect.center, "./resources/cannon_ball.png", 8, self.rect.bottom))
+            self.rect.center, app_folder+"/resources/cannon_ball.png", 8, self.rect.bottom))
         self.shot_sound.play()

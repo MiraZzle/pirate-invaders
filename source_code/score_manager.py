@@ -1,11 +1,13 @@
 import os
 
+app_folder = os.path.dirname(os.path.dirname(__file__))
+
 
 class HighScoreManager:
     def __init__(self) -> None:
         """Reads contents of file with HS"""
 
-        self.path_to_file = "./high_score/high_score_tracker.txt"
+        self.path_to_file = app_folder + "/high_score/high_score_tracker.txt"
         self.hs_document = open(self.path_to_file, "r")
         self.high_score = int(self.hs_document.readline())
         self.hs_document.close()
