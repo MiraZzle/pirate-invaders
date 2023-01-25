@@ -1,7 +1,10 @@
+"""Player module in main game. Handles player input, movement and shooting."""
+
 import pygame as pg
-from projectile import Projectile
+from projectile import Projectile  # projectile module from projectile.py
 import os
 
+# parent directory of current file parent directory
 app_folder = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -11,40 +14,34 @@ class Player(pg.sprite.Sprite):
 
         super().__init__()
         self.image = pg.image.load(
-            app_folder+"/resources/im5.png").convert_alpha()
+            app_folder+"/resources/im5.png").convert_alpha()  # loads player image
 
         self.sprite_path = app_folder+"/resources/im5.png"  # Path to first frame of anim
-        # Path to second frame of anim
-        self.second_frame_path = app_folder + "/resources/im5_b.pngm"
 
         self.scr_width: int = scr_w
+        # collision object with image size, pos set to midbottom of image
         self.rect = self.image.get_rect(midbottom=pos)
         self.speed: int = speed
         self.ready: bool = True
 
         self.shooting_time: int = 0
         self.shoot_cd: int = 600
-        self.projectiles = pg.sprite.Group()
+        self.projectiles = pg.sprite.Group()  #  container for projectile sprite objects
         self.shot_sound = pg.mixer.Sound(
-            app_folder+"/resources/audio/shot.wav")
+            app_folder+"/resources/audio/shot.wav")  # sets sound played on shooting event
         self.shot_sound.set_volume(0.5)
 
         # Images for going right or left
-        self.right_dir = self.image  # No flip
-        self.left_dir = pg.transform.flip(  # Flip
+        self.right_dir = self.image  # Not flipped
+        self.left_dir = pg.transform.flip(  # Flip horizontally
             self.image, True, False)
 
         self.current_side = "right"
 
-        # Animation section:
-        self.current_frame = 0
-        self.current_time = 0
-        self.available_frames = [self.sprite_path, self.second_frame_path]
-
     def player_input(self) -> None:
         """Player input mapping"""
 
-        keys = pg.key.get_pressed()
+        keys = pg.key.get_pressed()  #  state of all keyboard keys
 
         """If right arrow is pressed and held, player moves to right"""
         """If left arrow is pressed and held, player moves to left"""
@@ -66,7 +63,7 @@ class Player(pg.sprite.Sprite):
             self.ready = False
             self.shooting_time = pg.time.get_ticks()
 
-    def update(self) -> None:
+    def update(self) -> None:  #  function for all class functions update
         self.player_input()
         self.clamp()
         self.reload()
@@ -87,6 +84,7 @@ class Player(pg.sprite.Sprite):
             self.rect.right = self.scr_width
 
     def shoot(self) -> None:
+        """Player shoot event"""
         self.projectiles.add(Projectile(
-            self.rect.center, app_folder+"/resources/cannon_ball.png", 8, self.rect.bottom))
+            self.rect.center, app_folder+"/resources/cannon_ball.png", 8, self.rect.bottom))  #  adds projectile object to projectile container
         self.shot_sound.play()
