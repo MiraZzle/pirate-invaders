@@ -1,4 +1,4 @@
-# Pirate Invaders
+# Pirate Invaders (NPRG030)
 
 ## Gameplay
 
