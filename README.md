@@ -20,7 +20,7 @@ Players goal is to achieve the highest score by eliminating enemy entities.
 3. Run the file ./source_code/main.py
 
 ## Terminal
-- To run the game from Terminal, makes your current working directory is ```pirate_invaders```. From terminal, run this command: 
+- To run the game from Terminal, make sure your current working directory is ```pirate_invaders```. From terminal, run this command: 
 ```
 python3 ./source_code/main.py
 ```
