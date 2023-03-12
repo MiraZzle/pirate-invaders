@@ -1,14 +1,8 @@
 # Pirate Invaders (NPRG030)
 
-## Gameplay
-
-### Description
+## About the project
 Pirate Invaders is a game based on the game Space Invaders. The player controls a horizontally moving character. 
 Players goal is to achieve the highest score by eliminating enemy entities.
-
-<p align="center">
-<img width="631" alt="Snímek obrazovky 2022-12-28 v 17 43 24" src="https://user-images.githubusercontent.com/65544540/209844778-1e281ecd-6ad7-4332-b873-fb2808e2b480.png">
-</p>
 
 ## Prerequisities
 1. [Download Python](https://www.python.org/downloads/) (v3.10+)
@@ -19,7 +13,7 @@ Players goal is to achieve the highest score by eliminating enemy entities.
 2. Open the **ENTIRE** repository in IDE
 3. Run the file ./source_code/main.py
 
-## Terminal
+## Starting from Terminal
 - To run the game from Terminal, make sure your current working directory is ```pirate_invaders```. From terminal, run this command: 
 ```
 python3 ./source_code/main.py
@@ -75,7 +69,4 @@ There are 3 enemy types, which differ in points given after their destruction by
   - Game ends if player health reaches 0
   - Game ends if player collides with an enemy
  
- <p align="center">
-  <img width="363" alt="Snímek obrazovky 2022-12-28 v 17 56 27" src="https://user-images.githubusercontent.com/65544540/209846303-49c9aa5c-6721-4355-a895-6d1798fb6480.png">
-</p>
 
