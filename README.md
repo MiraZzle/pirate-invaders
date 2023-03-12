@@ -67,6 +67,6 @@ There are 3 enemy types, which differ in points given after their destruction by
 ## Game Over
 - Game Over conditions:
   - Game ends if player health reaches 0
-  - Game ends if player collides with an enemy
+  - Game ends if player **collides** with an enemy
  
 
