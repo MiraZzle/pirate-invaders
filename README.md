@@ -13,7 +13,7 @@ Players goal is to achieve the highest score by eliminating enemy entities.
 2. Open the **ENTIRE** repository in IDE
 3. Run the file ./source_code/main.py
 
-## Starting from Terminal
+## Launching from Terminal
 - To run the game from Terminal, make sure your current working directory is ```pirate_invaders```. From terminal, run this command: 
 ```
 python3 ./source_code/main.py
