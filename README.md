@@ -1,4 +1,4 @@
-# Pirate Invaders (NPRG030)
+# Pirate Invaders
 
 ## About the project
 Pirate Invaders is a game based on the game Space Invaders. The player controls a horizontally moving character. 
