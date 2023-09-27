@@ -9,9 +9,12 @@ Players goal is to achieve the highest score by eliminating enemy entities.
 2. [Download Pygame](https://pypi.org/project/pygame/) (v2.1.2)
 
 ## How to play
-1. Clone the repository
-2. Open the **ENTIRE** repository in IDE
-3. Run the file ./source_code/main.py
+1. Clone this repository or download it as a ZIP file
+      ```bash
+   git clone https://github.com/MiraZzle/pirate-invaders
+   ```
+2. Open the project in an IDE of your choice
+3. Run the ./source_code/main.py
 
 ## Launching from Terminal
 - To run the game from Terminal, make sure your current working directory is ```pirate_invaders```. From terminal, run this command: 
@@ -43,18 +46,14 @@ There are 3 enemy types, which differ in points given after their destruction by
 
 ## Controls
 
-### Player controller
-- To move the player use the following controls: 
-  -  Hold **→**(**RIGHT ARROW KEY**) to move right
-  -  Hold **←** (**LEFT ARROW KEY**) to move left
-  -  Press **SPACE** to shoot a projectile
-
-### New game
-- Press **ENTER** after the game is over to restart the game
+| Key                  | Action             |
+| ---------------------| -------------------|
+| <kbd>→</kbd>         | Move Right         |
+| <kbd>←</kbd>         | Move Left          |
+| <kbd>Space</kbd>     | Shoot              |
+| <kbd>Enter</kbd>     | Restart Game       |
 
 ## Game Over
 - Game Over conditions:
   - Game ends if player health reaches 0
   - Game ends if player **collides** with an enemy
- 
-
