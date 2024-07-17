@@ -1,4 +1,6 @@
 # Pirate Invaders
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
+[![Python Version](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-360/)
 
 ## About the project
 Pirate Invaders is a game based on the game Space Invaders. The player controls a horizontally moving character. 
